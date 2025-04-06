@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.springproj.springproject.entity.User;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
@@ -23,7 +21,7 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private int expiryTime;
 
-    public String generateToken(User user){
+    public String generateToken(UserDetails user){
         return Jwts.builder()
         .setSubject(user.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
